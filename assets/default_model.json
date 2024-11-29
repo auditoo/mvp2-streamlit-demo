@@ -1,0 +1,68 @@
+{
+  "logement": {
+    "type_batiment": "appartement",
+    "surface": 92.0,
+    "hsp": 2.5,
+    "annee_construction": 1985,
+    "periode_construction": "1983-1988",
+    "nbr_niveaux": 2,
+    "adresse_numero": "12",
+    "adresse_rue": "rue du temple",
+    "adresse_code_postal": "75012",
+    "adresse_ville": "Paris"
+  },
+  "fenetres": [
+    {
+      "largeur": 110.0,
+      "hauteur": 160.0,
+      "hauteur_allege": null,
+      "piece": "cuisine",
+      "materiau": "bois",
+      "position": "nu-intérieur",
+      "type_chassis": "à vantaux",
+      "nbr_vantaux": 2,
+      "vitrage": "simple-vitrage",
+      "vitrage_epaisseur_lame_air": null,
+      "presence_grille_vmc": false
+    },
+    {
+      "largeur": 100.0,
+      "hauteur": 160.0,
+      "hauteur_allege": 0.85,
+      "piece": "salon",
+      "materiau": "pvc",
+      "position": "nu-extérieur",
+      "type_chassis": "à vantaux",
+      "nbr_vantaux": 2,
+      "vitrage": "double-vitrage",
+      "vitrage_epaisseur_lame_air": 16,
+      "presence_grille_vmc": false
+    },
+    {
+      "largeur": 240.0,
+      "hauteur": 205.0,
+      "hauteur_allege": null,
+      "piece": "salon",
+      "materiau": "pvc",
+      "position": "nu-extérieur",
+      "type_chassis": "fixe",
+      "nbr_vantaux": null,
+      "vitrage": "double-vitrage",
+      "vitrage_epaisseur_lame_air": 16,
+      "presence_grille_vmc": true
+    },
+    {
+      "largeur": 40.0,
+      "hauteur": 60.0,
+      "hauteur_allege": null,
+      "piece": "chambre",
+      "materiau": "aluminium",
+      "position": "nu-intérieur",
+      "type_chassis": "oscillo-battant",
+      "nbr_vantaux": null,
+      "vitrage": "simple-vitrage",
+      "vitrage_epaisseur_lame_air": null,
+      "presence_grille_vmc": false
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import datetime
 from typing import List, Literal
 from pydantic import BaseModel, Field
 from openai import OpenAI
@@ -115,11 +116,13 @@ def extract_model(content: str) -> Description | None:
     )
 
     description = completion.choices[0].message.parsed
-    return description
-    # if description:
-    #     ts = '{:%Y-%m-%d_%H-%M-%S}'.format(datetime.datetime.now())
-    #     with open(f"description_{ts}.json", "w") as f:
-    #         data = description.model_dump_json(indent=2)
-    #         f.write(data)
-    #         print(data)
-    #         return description
+    
+    if description:
+        ts = '{:%Y-%m-%d_%H-%M-%S}'.format(datetime.datetime.now())
+        with open(f"tmp/description_{ts}.json", "w") as f:
+            data = description.model_dump_json(indent=2)
+            f.write(data)
+            return description
+    
+    return None
+
