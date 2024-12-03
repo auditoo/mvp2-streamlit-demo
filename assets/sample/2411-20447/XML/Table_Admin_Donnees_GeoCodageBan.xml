@@ -1,0 +1,19 @@
+<adresse_demande>7 Rue des Cottages 75018 PARIS</adresse_demande>
+<label_brut>7 Rue des Cottages 75018 Paris</label_brut>
+<enum_statut_geocodage_ban_id>1</enum_statut_geocodage_ban_id>
+<ban_date_appel>2024-11-20</ban_date_appel>
+<ban_id>75118_2365_00007</ban_id>
+<ban_label>7 Rue des Cottages 75018 Paris</ban_label>
+<ban_housenumber>7</ban_housenumber>
+<ban_street>Rue des Cottages</ban_street>
+<ban_citycode>75118</ban_citycode>
+<ban_postcode>75018</ban_postcode>
+<ban_city>Paris</ban_city>
+<ban_type>housenumber</ban_type>
+<ban_score>0.6878</ban_score>
+<ban_x>651417.39</ban_x>
+<ban_y>6865847.27</ban_y>
+<latitude>48.890802</latitude>
+<longitude>2.337432</longitude>
+<GPS_API>api-adresse.data.gouv.fr</GPS_API>
+<altitude>70.7896576</altitude><elevation_API>maps.googleapis.com</elevation_API>
