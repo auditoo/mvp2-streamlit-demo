@@ -3,6 +3,8 @@ from typing import List, Literal
 from pydantic import BaseModel, Field
 from openai import OpenAI
 
+
+
 PeriodeConstruction = Literal[
     "avant 1948",
     "1948-1974",
@@ -91,38 +93,68 @@ class Fenetre(BaseModel):
     )
 
 
+class Piece(BaseModel):
+    type: Literal[
+        "salon",
+        "cuisine",
+        "chambre",
+        "wc",
+        "salle de bain",
+        "dégagement",
+        "couloir",
+        "autre",
+    ] = Field(title="Le type de pièce")
+    
+    index: int = Field(
+        title="Le numéro de la pièce pour un type de pièce donné pour les différencier. Commence à 1."
+    )
+
+    largeur: float = Field(
+        title="largeur de la pièce ou petit côté sinon",
+    )
+    longueur: float = Field(
+        title="longueur de la pièce ou grand côté sinon",
+    )
+    hauteur: float = Field(
+        title="hauteur sous plafond de la pièce",
+    )
+    nbr_murs: int = Field(
+        title="nombre de murs de la pièce",
+    )
+
+
 class Description(BaseModel):
     logement: Logement
+    pieces:List[Piece]
     fenetres: List[Fenetre]
 
 
-client = OpenAI()
+if __name__ == "__main __":
+    client = OpenAI()
 
+    def extract_model(content: str) -> Description | None:
+        completion = client.beta.chat.completions.parse(
+            model="gpt-4o-2024-08-06",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "Tu es un diagnostiqueur immobilier, expert dans l'analyse des logement et l'extratction de données. On va te donner de la donnée non structurée, que tu vas convertir selon la structure proposée.",
+                },
+                {
+                    "role": "user",
+                    "content": content,
+                },
+            ],
+            response_format=Description,
+        )
 
-def extract_model(content: str) -> Description | None:
-    completion = client.beta.chat.completions.parse(
-        model="gpt-4o-2024-08-06",
-        messages=[
-            {
-                "role": "system",
-                "content": "Tu es un diagnostiqueur immobilier, expert dans l'analyse des logement et l'extratction de données. On va te donner de la donnée non structurée, que tu vas convertir selon la structure proposée.",
-            },
-            {
-                "role": "user",
-                "content": content,
-            },
-        ],
-        response_format=Description,
-    )
+        description = completion.choices[0].message.parsed
 
-    description = completion.choices[0].message.parsed
-    
-    if description:
-        ts = '{:%Y-%m-%d_%H-%M-%S}'.format(datetime.datetime.now())
-        with open(f"tmp/description_{ts}.json", "w") as f:
-            data = description.model_dump_json(indent=2)
-            f.write(data)
-            return description
-    
-    return None
+        if description:
+            ts = "{:%Y-%m-%d_%H-%M-%S}".format(datetime.datetime.now())
+            with open(f"tmp/description_{ts}.json", "w") as f:
+                data = description.model_dump_json(indent=2)
+                f.write(data)
+                return description
 
+        return None
